@@ -1173,48 +1173,65 @@
                 return <OrderConfirmation order={orderDetails} />;
             }
             
-            if (showPayment) {
-                return (
-                    <div className="container mx-auto p-4">
-                        <button onClick={() => setShowPayment(false)} className="mb-4 text-blue-600 hover:text-blue-800">
-                            <i className="fas fa-arrow-left mr-2"></i> Back to Checkout
-                        </button>
-                        
-                        <h2 className="text-2xl font-bold mb-4">Online Payment</h2>
-                        
-                        <div className="bg-white rounded-lg shadow-md p-6 max-w-md mx-auto">
-                            <h3 className="text-xl font-semibold mb-4 text-center">QR code is not working please pay in the UPI ID - 7488468139-3@ybl</h3>
-                            
-                            <div className="qr-code mb-4">
-                                <div className="text-center">
-                                    <div className="text-4xl mb-2">₹{orderDetails.total}</div>
-                                    <div className="text-sm text-gray-600">Order #${orderDetails.id}</div>
-                                </div>
-                            </div>
-                            
-                            <div className="text-center mb-4">
-                                <p className="text-gray-600"><h2>UPI ID - 7488468139-3@ybl</h2></p>
-                               
-                            </div>
-                            
-                            <div className="bg-yellow-50 border border-yellow-200 rounded p-4 mb-4">
-                                <h4 className="font-semibold text-yellow-800 mb-2">Important Instructions:</h4>
-                                <ul className="text-sm text-yellow-700 list-disc list-inside">
-                                    <li>Please include your Order ID (#{orderDetails.id}) in the payment note</li>
-                                    <li>Take a screenshot of the payment confirmation</li>
-                                    <li>Click "I Have Paid" after completing the payment</li>
-                                </ul>
-                            </div>
-                            
-                            <button 
-                                onClick={handlePaymentConfirmation}
-                                className="w-full bg-green-600 text-white py-3 rounded hover:bg-green-700 transition-colors"
-                            >
-                                I Have Paid
-                            </button>
-                        </div>
-                    </div>
-                );
+  if (showPayment) {
+  return (
+    <div className="container mx-auto p-4">
+      <button
+        onClick={() => setShowPayment(false)}
+        className="mb-4 text-blue-600 hover:text-blue-800"
+      >
+        <i className="fas fa-arrow-left mr-2"></i> Back to Checkout
+      </button>
+
+      <h2 className="text-2xl font-bold mb-4">Online Payment</h2>
+
+      <div className="bg-white rounded-lg shadow-md p-6 max-w-md mx-auto">
+        <h3 className="text-xl font-semibold mb-4 text-center">Pay in this QR</h3>
+
+        <div className="qr-code mb-4 text-center">
+          {/* QR Code Image */}
+          <img
+            src="qr.png"
+            alt="UPI QR Code"
+            className="mx-auto w-52 h-52 object-contain rounded-lg"
+          />
+
+          <div className="mt-6">
+            <div className="inline-block bg-green-100 text-green-800 text-3xl font-bold px-6 py-3 rounded-lg mb-2">
+              ₹{orderDetails.total}
+            </div>
+            <div className="text-sm text-gray-500">Order #{orderDetails.id}</div>
+          </div>
+        </div>
+
+        <div className="text-center mb-4">
+          <h2 className="text-lg font-bold text-gray-800">
+            UPI ID - 7488468139-3@ybl
+          </h2>
+        </div>
+
+        <div className="bg-yellow-50 border border-yellow-200 rounded p-4 mb-4">
+          <h4 className="font-semibold text-yellow-800 mb-2">
+            Important Instructions:
+          </h4>
+          <ul className="text-sm text-yellow-700 list-disc list-inside">
+            <li>Please include your Order ID (#{orderDetails.id}) in the payment note</li>
+            <li>Take a screenshot of the payment confirmation</li>
+            <li>Click "I Have Paid" after completing the payment</li>
+          </ul>
+        </div>
+
+        <button
+          onClick={handlePaymentConfirmation}
+          className="w-full bg-green-600 text-white py-3 rounded hover:bg-green-700 transition-colors"
+        >
+          I Have Paid
+        </button>
+      </div>
+    </div>
+  );
+
+
             }
             
             return (
