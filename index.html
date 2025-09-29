@@ -380,8 +380,9 @@
             "Blue Lock",
             "Pokemon",
             "Cars",
+           
             "DC",
-            "Marvels",
+             "Marvels",
             "Mythology",
             "Quotes"
         ];
@@ -541,8 +542,9 @@
                 "Ben 10",
                 "Pokemon",
                 "Cars",
-                "Marvels",
+                
                 "DC",
+                "Marvels",
                 "Mythology",
                 "Quotes"
             ];
@@ -965,8 +967,10 @@ return (
                                     </div>
                                 )}
                                 <div className="flex justify-between mb-2">
+                                    
                                     <span>Shipping</span>
                                     <span>
+                                        
                                         {shipping === 0 ? (
                                             <>
                                                 <span className="line-through text-gray-400 mr-1">₹50</span>
@@ -976,6 +980,7 @@ return (
                                             `₹${shipping}`
                                         )}
                                     </span>
+                                    
                                 </div>
                                 <div className="border-t pt-2 mt-2 font-semibold text-lg flex justify-between">
                                     <span>Total</span>
@@ -984,6 +989,9 @@ return (
                                 {hasFreeBookmark && (
                                     <p className="text-sm text-green-600 mt-2">🎉 You qualify for a free bookmark!</p>
                                 )}
+                                    <div className="text-xs text-gray-500 mb-2 text-right">
+        Order Above ₹250 for free delivery
+    </div>
                             </div>
                         </>
                     )}
@@ -1122,32 +1130,8 @@ return (
                             />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">City *</label>
-                                <input 
-                                    type="text" 
-                                    name="city"
-                                    value={orderDetails.city}
-                                    onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded px-3 py-2"
-                                    required
-                                    placeholder="Enter your city"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Pincode *</label>
-                                <input 
-                                
-                                    type="text" 
-                                    name="pincode"
-                                    value={orderDetails.pincode}
-                                    onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded px-3 py-2"
-                                    required
-                                    placeholder="Enter pincode"
-                                    maxLength="6"
-                                />
-                            </div>
+                    
+                      
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Shipping Address *</label>
@@ -1185,7 +1169,7 @@ return (
                                         <span>₹{subtotal}</span>
                                     </div>
                                     <div className="flex justify-between mb-2">
-                                        <span>Shipping</span>
+                                        <span>Shipping </span>
                                        
                                         <span>{shipping === 0 ? 'FREE' : `₹${shipping}`}</span>
                                         
@@ -1600,7 +1584,7 @@ function Home() {
                                     ref={scrollRefs[catIdx]}
                                 >
                                     {categoryPosters.map(poster => (
-                                        <div style={{minWidth:'175px', flex:'0 0 auto'}} key={poster.id}>
+                                        <div style={{minWidth:'180px', flex:'0 0 auto'}} key={poster.id}>
                                             <PosterCard 
                                                 poster={poster} 
                                                 onSelect={setSelectedPoster}
