@@ -46,10 +46,29 @@
 <body class="bg-gray-50">
 
     <!-- Free Delivery Marquee -->
-    <div style="background: #fbbf24; color: #1e293b; font-weight: bold; overflow: hidden; white-space: nowrap; position: relative;">
-        <div id="free-delivery-marquee" style="display: inline-block; padding-left: 100%; animation: marquee 15s linear infinite;">
-            🚚  Free delivery order above ₹250 🚚 &nbsp; 🚚 Free delivery order above ₹250 🚚 &nbsp; 🚚 Free delivery order above ₹250 🚚
-        </div>
+    <div style="background:#fbbf24; color:#1e293b; font-weight:bold; overflow:hidden; white-space:nowrap; position:relative;">
+  <div id="free-delivery-marquee" style="display:inline-block; padding-left:100%; animation: marquee var(--marquee-speed, 25s) linear infinite;">
+    <span style="padding-right:50px;">
+      🚚 Free delivery order above ₹249 🚚 Buy 10 Get a Free Bookmark 🚚 Buy 20 get 2 Free Custom Poster
+    </span>
+    <span style="padding-right:50px;">
+      🚚 Free delivery order above ₹249 🚚 Buy 10 Get a Free Bookmark 🚚 Buy 20 get 2 Free Custom Poster
+    </span>
+  </div>
+</div>
+
+<style>
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Optional: pause on hover */
+#free-delivery-marquee:hover {
+  animation-play-state: paused;
+}
+</style>
+
     </div>
     <style>
         @keyframes marquee {
@@ -62,19 +81,61 @@
 
 
     <div id="root"></div>
+<button id="scrollTopBtn" 
+  style="display:none;
+         position:fixed;
+         bottom:20px;
+         right:20px;
+         width:40px;
+         height:40px;
+         border:none;
+         border-radius:50%;
+         background:rgba(0,0,0,0.4);  /* light black */
+         color:white;
+         font-size:18px;
+         cursor:pointer;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         transition:all 0.3s ease;
+         box-shadow:0 2px 6px rgba(0,0,0,0.3);">
+  ↑
+</button>
+
+<script>
+  const btn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener("scroll", () => {
+    btn.style.display = window.scrollY > 200 ? "flex" : "none";
+  });
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Hover effect: darker black
+  btn.addEventListener("mouseenter", () => {
+    btn.style.background = "rgba(0,0,0,0.6)";
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.background = "rgba(0,0,0,0.4)";
+  });
+</script>
+
+
 
     <script type="text/babel">
         // Poster data with specific images for each category
           const categoryImages = {
-            "Naruto": [  "https://ik.imagekit.io/gbhkmaml0k/naruto/1.png?updatedAt=1758657205624",
-  "https://ik.imagekit.io/gbhkmaml0k/naruto/3.png?updatedAt=1758657205121",
+            "Naruto": [  "https://ik.imagekit.io/gbhkmaml0k/All%20anime/naruto.png?updatedAt=1759948312938",
+ "https://ik.imagekit.io/gbhkmaml0k/naruto/10.png?updatedAt=1758657188858",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/6.png?updatedAt=1758657204734",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/2.png?updatedAt=1758657203952",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/27.png?updatedAt=1758657195460",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/5.png?updatedAt=1758657202168",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/19.png?updatedAt=1758657200588",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/25.png?updatedAt=1758657195789",
-  "https://ik.imagekit.io/gbhkmaml0k/naruto/28.png?updatedAt=1758657182281",
+  "https://ik.imagekit.io/gbhkmaml0k/naruto/28.png?updatedAt=1758657182281", 
   "https://ik.imagekit.io/gbhkmaml0k/naruto/8.png?updatedAt=1758657177382",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/5.png?updatedAt=1758657202168",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/18.png?updatedAt=1758657196285",
@@ -85,7 +146,7 @@
   "https://ik.imagekit.io/gbhkmaml0k/naruto/22.png?updatedAt=1758657195126",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/30.png?updatedAt=1758657195049",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/21.png?updatedAt=1758657193933",
-  "https://ik.imagekit.io/gbhkmaml0k/naruto/10.png?updatedAt=1758657188858",
+   "https://ik.imagekit.io/gbhkmaml0k/naruto/3.png?updatedAt=1758657205121",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/11.png?updatedAt=1758657185847",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/14.png?updatedAt=1758657183906",
   "https://ik.imagekit.io/gbhkmaml0k/naruto/16.png?updatedAt=1758657184045",
@@ -401,8 +462,93 @@
   "https://ik.imagekit.io/gbhkmaml0k/Blue%20Lock/14.png?updatedAt=1759042618609",
   "https://ik.imagekit.io/gbhkmaml0k/Blue%20Lock/21.png?updatedAt=1759042618628",
   "https://ik.imagekit.io/gbhkmaml0k/Blue%20Lock/22.png?updatedAt=1759042617528"],
-            "Pokemon": Array(30).fill().map((_, i) => `https://source.unsplash.com/300x400/?pokemon,anime&sig=${i+700}`),
-            "Cars": Array(30).fill().map((_, i) => `https://source.unsplash.com/300x400/?cars,movie,animation&sig=${i+800}`),
+            "Sports": [
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/20.png?updatedAt=1760165960107",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/22.png?updatedAt=1760165960168",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/40.png?updatedAt=1760165960270",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/7.png?updatedAt=1760165960460",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/6.png?updatedAt=1760165960117",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/11.png?updatedAt=1760165960691",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/27.png?updatedAt=1760165960078",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/1.png?updatedAt=1760165959810",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/26.png?updatedAt=1760165959823",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/12.png?updatedAt=1760165960009",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/39.png?updatedAt=1760165959928",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/14.png?updatedAt=1760165958824",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/31.png?updatedAt=1760165959909",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/38.png?updatedAt=1760165958718",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/2.png?updatedAt=1760165959782",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/21.png?updatedAt=1760165961398",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/36.png?updatedAt=1760165958548",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/8.png?updatedAt=1760165959082",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/33.png?updatedAt=1760165960687",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/17.png?updatedAt=1760165959467",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/34.png?updatedAt=1760165958514",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/9.png?updatedAt=1760165959792",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/29.png?updatedAt=1760165958940",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/15.png?updatedAt=1760165958486",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/24.png?updatedAt=1760165958319",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/13.png?updatedAt=1760165957647",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/28.png?updatedAt=1760165957531",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/3.png?updatedAt=1760165957077",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/37.png?updatedAt=1760165957120",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/5.png?updatedAt=1760165955115",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/30.png?updatedAt=1760165956131",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/25.png?updatedAt=1760165954235",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/23.png?updatedAt=1760165951710",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/32.png?updatedAt=1760165951331",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/4.png?updatedAt=1760165949307",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/16.png?updatedAt=1760165947807",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/10.png?updatedAt=1760165945286",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/19.png?updatedAt=1760165944133",
+  "https://ik.imagekit.io/gbhkmaml0k/sports%202/18.png?updatedAt=1760165938870"
+],
+            "Gamers": [
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/5.png?updatedAt=1760458651848",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/40.png?updatedAt=1760458651944",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/11.png?updatedAt=1760458650427",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/44.png?updatedAt=1760458650018",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/10.png?updatedAt=1760458650489",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/6.png?updatedAt=1760458651756",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/39.png?updatedAt=1760458650542",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/47.png?updatedAt=1760458651785",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/35.png?updatedAt=1760458650469",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/2.png?updatedAt=1760458651186",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/27.png?updatedAt=1760458651550",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/42.png?updatedAt=1760458650151",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/13.png?updatedAt=1760458650949",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/18.png?updatedAt=1760458649949",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/4.png?updatedAt=1760458649355",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/12.png?updatedAt=1760458648839",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/15.png?updatedAt=1760458649513",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/38.png?updatedAt=1760458649002",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/3.png?updatedAt=1760458649834",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/21.png?updatedAt=1760458648359",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/24.png?updatedAt=1760458647069",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/9.png?updatedAt=1760458647646",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/34.png?updatedAt=1760458646979",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/23.png?updatedAt=1760458645907",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/30.png?updatedAt=1760458646745",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/25.png?updatedAt=1760458645845",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/22.png?updatedAt=1760458645703",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/43.png?updatedAt=1760458649079",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/29.png?updatedAt=1760458645309",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/37.png?updatedAt=1760458644395",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/32.png?updatedAt=1760458644571",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/31.png?updatedAt=1760458642275",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/7.png?updatedAt=1760458640613",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/14.png?updatedAt=1760458637941",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/17.png?updatedAt=1760458633055",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/46.png?updatedAt=1760458633467",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/1.png?updatedAt=1760458627385",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/19.png?updatedAt=1760458621784",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/8.png?updatedAt=1760458621266",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/20.png?updatedAt=1760458614147",
+  "https://ik.imagekit.io/gbhkmaml0k/Gamer/26.png?updatedAt=1760458616403",
+ "https://ik.imagekit.io/gbhkmaml0k/Gamer/39.png?updatedAt=1760458650542",
+    "https://ik.imagekit.io/gbhkmaml0k/Gamer/18.png?updatedAt=1760458649949",
+    
+],
               "Marvels": [  "https://ik.imagekit.io/gbhkmaml0k/Marvel/1.png?updatedAt=1759232197363",
   "https://ik.imagekit.io/gbhkmaml0k/Marvel/26.png?updatedAt=1759232197224",
   "https://ik.imagekit.io/gbhkmaml0k/Marvel/16.png?updatedAt=1759232197152",
@@ -479,7 +625,46 @@
   "https://ik.imagekit.io/gbhkmaml0k/god/9.png?updatedAt=1759310647438",
   "https://ik.imagekit.io/gbhkmaml0k/god/17.png?updatedAt=1759310645765",
   "https://ik.imagekit.io/gbhkmaml0k/god/14.png?updatedAt=1759310645465"],
-            "Quotes": Array(30).fill().map((_, i) => `https://source.unsplash.com/300x400/?inspirational-quotes,motivation&sig=${i+1200}`)
+            "Quotes":[
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/37.png?updatedAt=1760375770501",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/14.png?updatedAt=1760375770205",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/11.png?updatedAt=1760375769051",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/28.png?updatedAt=1760375767941",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/9.png?updatedAt=1760375768600",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/29.png?updatedAt=1760375768248",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/30.png?updatedAt=1760375766585",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/17.png?updatedAt=1760375766933",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/8.png?updatedAt=1760375767245",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/2.png?updatedAt=1760375766865",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/16.png?updatedAt=1760375765676",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/34.png?updatedAt=1760375765581",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/23.png?updatedAt=1760375763714",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/18.png?updatedAt=1760375758911",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/20.png?updatedAt=1760375758664",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/4.png?updatedAt=1760375758166",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/31.png?updatedAt=1760375752926",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/6.png?updatedAt=1760375752317",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/26.png?updatedAt=1760375751731",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/32.png?updatedAt=1760375751503",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/38.png?updatedAt=1760375749986",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/19.png?updatedAt=1760375750192",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/36.png?updatedAt=1760375750281",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/1.png?updatedAt=1760375749918",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/35.png?updatedAt=1760375749486",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/22.png?updatedAt=1760375748880",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/5.png?updatedAt=1760375745845",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/10.png?updatedAt=1760375744945",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/39.png?updatedAt=1760375743627",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/13.png?updatedAt=1760375739248",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/3.png?updatedAt=1760375736487",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/33.png?updatedAt=1760375733509",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/27.png?updatedAt=1760375732994",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/21.png?updatedAt=1760375732634",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/12.png?updatedAt=1760375733481",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/7.png?updatedAt=1760375729661",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/25.png?updatedAt=1760375728321",
+  "https://ik.imagekit.io/gbhkmaml0k/quotes/15.png?updatedAt=1760375725719"
+]
         };
 
         const animeCategories = [
@@ -494,8 +679,8 @@
             "All Anime",
             "My Hero Academia",
             "Blue Lock",
-            "Pokemon",
-            "Cars",
+            "Sports",
+            "Gamers",
            
             "DC",
              "Marvels",
@@ -525,21 +710,21 @@
 
         const comboData = {
             twoPosters: [
-                { id: 'combo2-1', posters: [1, 2], price: 699, discount: 100 },
-                { id: 'combo2-2', posters: [3, 4], price: 749, discount: 99 },
-                { id: 'combo2-3', posters: [5, 6], price: 749, discount: 149 },
+                { id: 'combo2-1', posters: [1, 2], price: 249 , discount: 400 },
+          
             ],
             threePosters: [
                 { id: 'combo3-1', posters: [7, 8, 9], price: 999, discount: 148 },
-                { id: 'combo3-2', posters: [10, 11, 12], price: 1049, discount: 148 },
+            
             ]
         };
 
         // Size options with price multipliers
         const sizeOptions = [
+            { name: "mini size", price: 9 },
             { name: "A4", price: 25 },
             { name: "12×18", price: 59 },
-            { name: "18×24", price: 109 }
+            { name: "A4 with Frame", price: 299 }
         ];
 
         // Helper functions for localStorage
@@ -656,44 +841,45 @@
                 "Chainsaw Man",
                 "My Hero Academia",
                 "Ben 10",
-                "Pokemon",
-                "Cars",
-                
+                "Sports",
+                "Gamers",
                 "DC",
                 "Marvels",
                 "Mythology",
                 "Quotes"
+         
+              
             ];
 return (
-    <nav className="bg-white shadow-md sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-                <div className="flex items-center">
-                    <a href="#home" className="text-gray-700 hover:text-blue-600 p-2 ml-2" title="Home">
-                        <i className="fas fa-home text-lg"></i>
-                    </a>
-                    <a href="#home" className="flex-shrink-0 font-bold text-xl text-blue-600">YuziGallery</a>
-                    {/* Logo moved to right side of YuziGallery */}
-                    <img 
-                        src="https://ik.imagekit.io/gbhkmaml0k/logo.png?updatedAt=1758704539964" 
-                        alt="Yuzi Gallery Logo" 
-                        className="h-8 w-8 ml-2" 
-                    />
-                    <div className="hidden md:block md:ml-6" style={{ maxWidth: '60vw', overflowX: 'auto', whiteSpace: 'nowrap' }}>
-                        <div style={{ display: 'inline-flex' }}>
-                            {categories.map(category => (
-                                <a
-                                    key={category}
-                                    href={`#category-${category.toLowerCase().replace(/\s+/g, '-')}`}
-                                    className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
-                                    style={{ whiteSpace: 'nowrap' }}
-                                >
-                                    {category}
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+  <nav className="bg-white shadow-md sticky top-0 z-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between h-16">
+        <div className="flex items-center">
+          {/* Removed Home button */}
+          <a href="#home" className="flex-shrink-0 font-bold text-xl text-blue-600">YuziGallery</a>
+          {/* Logo moved to right side of YuziGallery */}
+          <img 
+            src="https://ik.imagekit.io/gbhkmaml0k/logo.png?updatedAt=1758704539964" 
+            alt="Yuzi Gallery Logo" 
+            className="h-8 w-8 ml-2" 
+          />
+          <div className="hidden md:block md:ml-6" style={{ maxWidth: '60vw', overflowX: 'auto', whiteSpace: 'nowrap' }}>
+            <div style={{ display: 'inline-flex' }}>
+              {categories.map(category => (
+                <a
+                  key={category}
+                  href={`#category-${category.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium"
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  {category}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+
                 <div className="flex items-center">
                     <a href="#cart" className="text-gray-700 hover:text-blue-600 p-2 relative">
                         <i className="fas fa-shopping-cart text-lg"></i>
@@ -754,9 +940,10 @@ return (
                         <h3 className="font-semibold text-sm mb-1 truncate">{poster.title}</h3>
                         <p className="text-gray-600 text-xs mb-1">{poster.category}</p>
                         <div className="flex flex-col gap-1 mb-1">
+                            <span className="text-blue-600 font-bold text-xs">Mini Size: <del>₹25</del> ₹9</span>
                             <span className="text-blue-600 font-bold text-xs">A4: <del>₹59</del> ₹25</span>
                             <span className="text-blue-600 font-bold text-xs">12x18: <del>₹109</del> ₹59</span>
-                            <span className="text-blue-600 font-bold text-xs">18x24: <del>₹209</del> ₹109</span>
+                            <span className="text-blue-600 font-bold text-xs">A4 with Frame: <del>₹499</del> ₹299</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <button 
@@ -771,13 +958,14 @@ return (
             );
         }
 
-        function ComboCard({ combo, type, onSelect }) {
+         function ComboCard({ combo, type, onSelect }) {
             const posters = combo.posters.map(id => posterData.find(p => p.id === id));
             
             return (
                 <div className="bg-white rounded-lg shadow-md overflow-hidden border-2 border-yellow-300">
                     <div className="p-4 bg-yellow-50 border-b border-yellow-200">
-                        <h3 className="font-bold text-lg text-center">Combo of {type} Posters</h3>
+                        <h3 className="font-bold text-lg text-center">Combo of {type} X12 Posters</h3>
+                        <div><h5 className="font-bold text-lg text-center">You Can Customize The 2nd Image</h5></div>
                     </div>
                     <div className="p-4">
                         <div className="grid grid-cols-2 gap-2 mb-4">
@@ -793,7 +981,7 @@ return (
                         <div className="flex justify-between items-center">
                             <div>
                                 <span className="text-blue-600 font-bold text-lg">₹{combo.price}</span>
-                                <span className="text-gray-500 text-sm line-through ml-2">₹{combo.price + combo.discount}</span>
+                          <span className="text-grey-600 font-bold text-xs"> <del>₹649</del></span>
                             </div>
                             <button 
                                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
@@ -813,26 +1001,22 @@ return (
             const [quantity, setQuantity] = useState(1);
             const [zoomed, setZoomed] = useState(false);
             
-            // Use fixed price per size, no A4 discount
             let calculatedPrice = isCombo ? poster.price : selectedSize.price;
             
             const handleAddToCart = () => {
                 if (isCombo) {
-                    // For combos, we add each poster individually
-                    poster.posters.forEach(posterId => {
-                        const posterItem = posterData.find(p => p.id === posterId);
-                        addToCart({
-                            id: `${poster.id}-${posterId}`,
-                            posterId: posterId,
-                            title: posterItem.title,
-                            category: posterItem.category,
-                            price: Math.round(poster.price / poster.posters.length),
-                            image: posterItem.image,
-                            size: "Combo",
-                            quantity: 1,
-                            comboId: poster.id
-                        });
-                    });
+    addToCart({
+        id: poster.id, // use the combo id as the cart item id
+        posterId: poster.id,
+        title: `Combo of ${comboType} Posters`,
+        category: "Combo",
+        price: poster.price, // full price for the combo
+        image: poster.posters.map(id => posterData.find(p => p.id === id)?.image).filter(Boolean)[0] || posterData[0].image,
+        size: "Combo",
+        quantity: 2, // fixed quantity of 2
+        comboId: poster.id,
+        isCombo: true
+    });
                 } else {
                     addToCart({
                         id: `${poster.id}-${selectedSize.name}`,
@@ -848,6 +1032,7 @@ return (
                 onClose();
             };
 
+
             return (
                 <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
                     <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
@@ -859,18 +1044,19 @@ return (
                         </div>
                         <div className="p-4 md:p-6 md:flex">
                             <div className="md:w-1/2 mb-4 md:mb-0">
+                                
                                 <img 
-                                    src={isCombo ? posterData.find(p => p.id === poster.posters[0]).image : poster.image} 
-                                    alt={poster.title}
-                                    className={`w-full rounded-lg ${zoomed ? 'zoomed' : 'zoomable'}`}
-                                    onClick={() => setZoomed(!zoomed)}
-                                />
+    src={isCombo ? posterData.find(p => p.id === poster.posters[0])?.image : poster.image}
+    alt={poster.title}
+    className={`w-full rounded-lg ${zoomed ? 'zoomed' : 'zoomable'}`}
+    onClick={() => setZoomed(!zoomed)}
+/>
                                 {isCombo && (
                                     <div className="grid grid-cols-2 gap-2 mt-2">
                                         {poster.posters.map((id, index) => {
-                                            if (index === 0) return null; // Skip first as it's already shown
+                                            if (index === 0) return null;
                                             const comboPoster = posterData.find(p => p.id === id);
-                                            return (
+                                               return (
                                                 <img 
                                                     key={index} 
                                                     src={comboPoster.image} 
@@ -878,9 +1064,11 @@ return (
                                                     className="w-full rounded"
                                                 />
                                             );
+                                         
                                         })}
                                     </div>
                                 )}
+                                
                             </div>
                             <div className="md:w-1/2 md:pl-6">
                                 {!isCombo && (
@@ -967,9 +1155,9 @@ return (
             // Calculate subtotal, no A4 discount
             const a4Count = cartItems.filter(item => item.size === 'A4').reduce((sum, item) => sum + item.quantity, 0);
             const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            // Free delivery if 10+ A4 posters OR subtotal >= 250, otherwise ₹50 shipping
+            // Free delivery if 10+ A4 posters OR subtotal >= 249, otherwise ₹50 shipping
             let shipping = 50;
-            if (a4Count >= 10 || subtotal >= 250) shipping = 0;
+            if (a4Count >= 10 || subtotal >= 249) shipping = 0;
             const total = subtotal + shipping;
             
             // Check if order qualifies for free bookmark
@@ -1106,7 +1294,7 @@ return (
                                     <p className="text-sm text-green-600 mt-2">🎉 You qualify for a free bookmark!</p>
                                 )}
                                     <div className="text-xs text-gray-500 mb-2 text-right">
-        Order Above ₹250 for free delivery
+        Order Above ₹249 for free delivery
     </div>
                             </div>
                         </>
@@ -1127,7 +1315,7 @@ return (
             const [paymentMethod, setPaymentMethod] = useState('online');
             
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = subtotal >= 250 ? 0 : 50;
+            const shipping = subtotal >= 249 ? 0 : 50;
             // Apply ₹20 discount for online payments
             const onlineDiscount = paymentMethod === 'online' ? 20 : 0;
             const total = Math.max(0, subtotal + shipping - onlineDiscount);
@@ -1290,8 +1478,8 @@ return (
                                         <span>{shipping === 0 ? 'FREE' : `₹${shipping}`}</span>
                                         
                                     </div>
-                                     <div>Order Above ₹250 for free delivery</div>
-                                    {subtotal >= 250 && (
+                                     <div>Order Above ₹249 for free delivery</div>
+                                    {subtotal >= 249 && (
                                         <div className="flex justify-between mb-2 text-green-600">
                                             <span>Free shipping applied!</span>
                                             <span></span>
@@ -1655,7 +1843,7 @@ function Home() {
                             <div className="bg-green-100 p-2 rounded-full mr-3">
                                 <i className="fas fa-gift text-green-600"></i>
                             </div>
-                            <p className="text-green-800 font-medium">Free Bookmark on orders above ₹999!</p>
+                            <p className="text-green-800 font-medium">orders above ₹999 get 5 Posters Free</p>
                         </div>
                     </div>
                 </div>
@@ -1730,6 +1918,7 @@ function Home() {
                             </div>
                         </div>
                     </section>
+                    
                 );
             })}
             
@@ -1754,24 +1943,507 @@ function Home() {
                     </div>
                 </div>
                 
-                <div>
-                    <h3 className="text-xl font-semibold mb-4">Combo of 3 Posters</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {comboData.threePosters.map(combo => (
-                            <ComboCard 
-                                key={combo.id}
-                                combo={combo}
-                                type={3}
-                                onSelect={(combo, type) => {
-                                    setSelectedCombo(combo);
-                                    setComboType(type);
-                                }}
-                            />
-                        ))}
+                
+               
+</section>
+
+{/* Product Sizes & Reality Section */}
+<section className="py-12 bg-gradient-to-r from-green-50 to-blue-50">
+    <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-4">Product Sizes & Reality</h2>
+        <p className="text-gray-600 text-center mb-8">See exactly how our different poster sizes look in real life</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Mini Posters */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-purple-400 transition-transform hover:scale-105">
+                <div className="p-4 bg-purple-50 border-b border-purple-200">
+                    <h3 className="text-xl font-bold text-center text-gray-800">Mini Posters</h3>
+                    <p className="text-sm text-center text-gray-600">5 × 7.5 cm</p>
+                </div>
+                
+                <div className="p-4">
+                    <div className="mb-4 relative">
+                        <video 
+                            className="w-full rounded-lg shadow-md"
+                            autoPlay
+                            loop
+                            controls
+                            muted
+                            playsInline
+                            preload="metadata"
+                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+                        >
+                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div className="text-center mb-4">
+                        <div className="bg-purple-100 rounded-lg p-3 mb-3">
+                            <i className="fas fa-bookmark text-purple-600 text-2xl mb-2"></i>
+                            <p className="font-semibold text-gray-800">Mini Size</p>
+                            <p className="text-sm text-gray-600">Compact & cute</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex justify-center items-center mb-4">
+                        <span className="text-purple-600 font-bold text-xl">₹9</span>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-lg p-3">
+                        <h4 className="font-semibold mb-2 text-sm">Perfect For:</h4>
+                        <ul className="text-xs text-gray-600 space-y-1">
+                            <li>✓ Laptop stickers</li>
+                            <li>✓ Notebook covers</li>
+                            <li>✓ Small collections</li>
+                            <li>✓ One Free with orders</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
-            
+            </div>
+
+            {/* A4 Size */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-blue-400 transition-transform hover:scale-105">
+                <div className="p-4 bg-blue-50 border-b border-blue-200">
+                    <h3 className="text-xl font-bold text-center text-gray-800">A4 Size</h3>
+                    <p className="text-sm text-center text-gray-600">21.0 × 29.7 cm</p>
+                </div>
+                
+                <div className="p-4">
+                    <div className="mb-4">
+                        <video 
+                            className="w-full rounded-lg shadow-md"
+                            autoPlay
+                            loop
+                            controls
+                            muted
+                            playsInline
+                            preload="metadata"
+                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+                        >
+                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div className="text-center mb-4">
+                        <div className="bg-blue-100 rounded-lg p-3 mb-3">
+                            <i className="fas fa-file-image text-blue-600 text-2xl mb-2"></i>
+                            <p className="font-semibold text-gray-800">Standard Size</p>
+                            <p className="text-sm text-gray-600">Perfect for desks</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex justify-center items-center mb-4">
+                        <div>
+                            <span className="text-blue-600 font-bold text-xl">₹25</span>
+                            <span className="text-gray-500 line-through text-sm ml-2">₹59</span>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-lg p-3">
+                        <h4 className="font-semibold mb-2 text-sm">Perfect For:</h4>
+                        <ul className="text-xs text-gray-600 space-y-1">
+                            <li>✓ Study table decoration</li>
+                            <li>✓ Office desk</li>
+                            <li>✓ Small spaces</li>
+                            <li>✓ Budget-friendly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* 12×18 Size */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-green-400 transition-transform hover:scale-105">
+                <div className="p-4 bg-green-50 border-b border-green-200">
+                    <h3 className="text-xl font-bold text-center text-gray-800">12×18 Size</h3>
+                    <p className="text-sm text-center text-gray-600">30.5 × 45.7 cm</p>
+                </div>
+                
+                <div className="p-4">
+                    <div className="mb-4">
+                        <video 
+                            className="w-full rounded-lg shadow-md"
+                            autoPlay
+                            loop
+                            controls
+                            muted
+                            playsInline
+                            preload="metadata"
+                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+                        >
+                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div className="text-center mb-4">
+                        <div className="bg-green-100 rounded-lg p-3 mb-3">
+                            <i className="fas fa-expand text-green-600 text-2xl mb-2"></i>
+                            <p className="font-semibold text-gray-800">Medium Size</p>
+                            <p className="text-sm text-gray-600">Ideal for walls</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex justify-center items-center mb-4">
+                        <div>
+                            <span className="text-green-600 font-bold text-xl">₹59</span>
+                            <span className="text-gray-500 line-through text-sm ml-2">₹109</span>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-lg p-3">
+                        <h4 className="font-semibold mb-2 text-sm">Perfect For:</h4>
+                        <ul className="text-xs text-gray-600 space-y-1">
+                            <li>✓ Bedroom walls</li>
+                            <li>✓ Living room decor</li>
+                            <li>✓ Feature walls</li>
+                            <li>✓ Statement pieces</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* A4 with Frame */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-yellow-400 transition-transform hover:scale-105">
+                <div className="p-4 bg-yellow-50 border-b border-yellow-200">
+                    <h3 className="text-xl font-bold text-center text-gray-800">A4 with Frame</h3>
+                    <p className="text-sm text-center text-gray-600">Ready to hang</p>
+                </div>
+                
+                <div className="p-4">
+                    <div className="mb-4">
+                        <video 
+                            className="w-full rounded-lg shadow-md"
+                            autoPlay
+                            loop
+                            controls
+                            muted
+                            playsInline
+                            preload="metadata"
+                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+                        >
+                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div className="text-center mb-4">
+                        <div className="bg-yellow-100 rounded-lg p-3 mb-3">
+                            <i className="fas fa-border-all text-yellow-600 text-2xl mb-2"></i>
+                            <p className="font-semibold text-gray-800">Framed Display</p>
+                            <p className="text-sm text-gray-600">Premium look</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex justify-center items-center mb-4">
+                        <div>
+                            <span className="text-yellow-600 font-bold text-xl">₹299</span>
+                            <span className="text-gray-500 line-through text-sm ml-2">₹499</span>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-lg p-3">
+                        <h4 className="font-semibold mb-2 text-sm">Perfect For:</h4>
+                        <ul className="text-xs text-gray-600 space-y-1">
+                            <li>✓ Office decor</li>
+                            <li>✓ Gift purposes</li>
+                            <li>✓ Professional look</li>
+                            <li>✓ Ready to display</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+                        {/* Customer Reviews Section */}
+<section className="py-12 bg-gradient-to-r from-indigo-50 to-purple-50">
+    <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-4">What Our Customers Say</h2>
+        <p className="text-gray-600 text-center mb-8">Real reviews from real customers</p>
+        
+        <div className="relative">
+            {/* Reviews Slider Container */}
+            <div className="flex overflow-x-auto gap-6 pb-8 custom-scrollbar" 
+                 style={{WebkitOverflowScrolling: 'touch'}}>
+                {/* Review 1 */}
+                <div className="flex-shrink-0 w-80">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
+                            <video 
+    className="absolute inset-0 w-full h-full object-cover"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    preload="metadata"
+    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+
+>
+    <source src="https://ik.imagekit.io/gbhkmaml0k/Video-898.mp4?updatedAt=1760457454549"
+ type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+                        </div>
+                        <div className="p-4">
+                            <div className="flex items-center mb-2">
+                                <div className="flex text-yellow-400">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <span className="ml-2 text-sm font-semibold">5.0</span>
+                            </div>
+                            <p className="text-sm text-gray-600">"The quality exceeded my expectations! Perfect for my room decor."</p>
+                            <p className="text-xs text-gray-500 mt-2">- Rahul Sharma</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Review 2 */}
+                <div className="flex-shrink-0 w-80">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
+                             <video 
+    className="absolute inset-0 w-full h-full object-cover"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    preload="metadata"
+    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+
+>
+    <source src="https://ik.imagekit.io/gbhkmaml0k/Video-482.mp4?updatedAt=1760460199517"
+ type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+                        </div>
+                        <div className="p-4">
+                            <div className="flex items-center mb-2">
+                                <div className="flex text-yellow-400">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <span className="ml-2 text-sm font-semibold">5.0</span>
+                            </div>
+                            <p className="text-sm text-gray-600">"Fast delivery and amazing print quality. Will order again!"</p>
+                            <p className="text-xs text-gray-500 mt-2">- Priya Patel</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Review 3 */}
+                <div className="flex-shrink-0 w-80">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
+                             <video 
+    className="absolute inset-0 w-full h-full object-cover"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    preload="metadata"
+    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+
+>
+    <source src="https://ik.imagekit.io/gbhkmaml0k/Video-98.mp4?updatedAt=1760461178927"
+ type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+                        </div>
+                        <div className="p-4">
+                            <div className="flex items-center mb-2">
+                                <div className="flex text-yellow-400">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star-half-alt"></i>
+                                </div>
+                                <span className="ml-2 text-sm font-semibold">4.5</span>
+                            </div>
+                            <p className="text-sm text-gray-600">"Love my custom poster! Exactly what I wanted for my gaming room."</p>
+                            <p className="text-xs text-gray-500 mt-2">- Ankit Verma</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Review 4 */}
+                <div className="flex-shrink-0 w-80">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
+                             <video 
+    className="absolute inset-0 w-full h-full object-cover"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    preload="metadata"
+    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+
+>
+    <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+ type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+                        </div>
+                        <div className="p-4">
+                            <div className="flex items-center mb-2">
+                                <div className="flex text-yellow-400">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <span className="ml-2 text-sm font-semibold">5.0</span>
+                            </div>
+                            <p className="text-sm text-gray-600">"The colors are so vibrant! Better than I expected. Highly recommend!"</p>
+                            <p className="text-xs text-gray-500 mt-2">- Sneha Gupta</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Review 5 */}
+                <div className="flex-shrink-0 w-80">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
+                          <video 
+    className="absolute inset-0 w-full h-full object-cover"
+    autoPlay
+    loop
+    muted
+    playsInline
+    controls
+    preload="metadata"
+    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+
+>
+    <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+ type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+                        </div>
+                        <div className="p-4">
+                            <div className="flex items-center mb-2">
+                                <div className="flex text-yellow-400">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <span className="ml-2 text-sm font-semibold">5.0</span>
+                            </div>
+                            <p className="text-sm text-gray-600">"Perfect gift for my friend who loves anime. She was so happy!"</p>
+                            <p className="text-xs text-gray-500 mt-2">- Rohit Kumar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Custom Scrollbar Indicator */}
+            <div className="mt-4 px-4">
+                <div className="bg-gray-200 rounded-full h-2 w-full">
+                    <div className="bg-purple-600 rounded-full h-2 w-1/5" id="scrollbar-progress"></div>
+                </div>
+                <div className="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>Swipe to see more reviews</span>
+                    <span id="scroll-position">1/5</span>
+                </div>
+            </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <div className="text-3xl font-bold text-purple-600">500+</div>
+                <div className="text-sm text-gray-600">Happy Customers</div>
+            </div>
+            <div>
+                <div className="text-3xl font-bold text-purple-600">4.8/5</div>
+                <div className="text-sm text-gray-600">Average Rating</div>
+            </div>
+            <div>
+                <div className="text-3xl font-bold text-purple-600">1000+</div>
+                <div className="text-sm text-gray-600">Posters Delivered</div>
+            </div>
+            <div>
+                <div className="text-3xl font-bold text-purple-600">98%</div>
+                <div className="text-sm text-gray-600">Satisfaction Rate</div>
+            </div>
+        </div>
+    </div>
+
+    {/* Add this script for scrollbar functionality */}
+    <script dangerouslySetInnerHTML={{
+        __html: `
+            document.addEventListener('DOMContentLoaded', function() {
+                const container = document.querySelector('.flex.overflow-x-auto');
+                const progress = document.getElementById('scrollbar-progress');
+                const position = document.getElementById('scroll-position');
+                
+                if (container && progress && position) {
+                    container.addEventListener('scroll', function() {
+                        const scrollWidth = container.scrollWidth - container.clientWidth;
+                        const scrollLeft = container.scrollLeft;
+                        const progressPercentage = (scrollLeft / scrollWidth) * 100;
+                        
+                        // Update progress bar
+                        progress.style.width = Math.min(100, Math.max(0, progressPercentage)) + '%';
+                        
+                        // Update position indicator (1/5, 2/5, etc.)
+                        const itemWidth = container.querySelector('.flex-shrink-0').offsetWidth + 24; // width + gap
+                        const currentPosition = Math.round(scrollLeft / itemWidth) + 1;
+                        const totalItems = container.children.length;
+                        position.textContent = currentPosition + '/' + totalItems;
+                    });
+                }
+            });
+        `
+    }} />
+</section>
+
+
+<style>{`
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+`}
+
+</style>
             {/* Product Detail Modal */}
             {selectedPoster && (
                 <ProductDetail 
@@ -1857,8 +2529,12 @@ function Home() {
                             <div className="max-w-7xl mx-auto px-4">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                     <div>
-                                        <h3 className="text-lg font-semibold mb-4">YuziGallery</h3>
-                                        <p className="text-gray-400">Premium quality posters for every taste and style.</p>
+                                        <h3 className="text-lg font-semibold mb-4">About US</h3>
+                                        <p className="text-gray-400">Yuzi Gallery is a curated online art platform connecting you with extraordinary art from around the world. We represent a diverse roster of talented contemporary artists, making it easy to discover and own original artwork that inspires.
+
+Our core belief is simple: Great art is for everyone. We are dedicated to supporting artists' careers and helping you find pieces that perfectly capture your vision and style. Explore, discover, and find your inspiration with Yuzi Gallery.
+
+</p>
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
