@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+
+ <meta name="description" content="Buy high-quality posters online at affordable prices. Explore aesthetic, motivational, anime, movie, and gaming wall art prints for your room, office, or home decor. Free shipping & premium quality guaranteed.">
+<meta name="keywords" content="buy posters online, aesthetic wall posters, motivational quotes posters, anime posters, movie posters online, gaming posters, designer posters, wall art prints, modern wall decor, custom poster printing, cool posters for room, trending wall art, premium posters India, affordable posters, home decoration posters, HD print quality, minimalist art prints, sports posters, vintage posters, funny posters, couple posters, office wall decor, gym posters, inspirational quotes posters">
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="YUZI GALLERY">
+
+  <!-- Open Graph (for Google + social sharing) -->
+  <meta property="og:title" content="YUZI GALLERY - Modern Poster & Wall Art Shop">
+  <meta property="og:description" content="Shop modern posters, wall art & aesthetic prints. Creative designs that elevate your space.">
+  <meta property="og:image" content="https://ik.imagekit.io/gbhkmaml0k/posters-cover-image.png">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:type" content="website">
     <title>YUZI GALLERY - Modern Poster Shop</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="icon" type="image/x-icon" href="https://ik.imagekit.io/gbhkmaml0k/Yellow%20and%20Black%20Circles%20Arts%20and%20Crafts%20Creative%20Agency%20Logo.png?updatedAt=1760593198484">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -23,7 +37,7 @@
             cursor: zoom-in;
         }
         .zoomable.zoomed {
-            transform: scale(1.8);
+            transform: scale(1.35);
             cursor: zoom-out;
         }
         .announcement-bar {
@@ -125,6 +139,21 @@
 
 
     <script type="text/babel">
+        // Function to scroll containers left/right
+        function scrollContainer(containerId, direction) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                const scrollAmount = container.clientWidth * 0.8; // 80% of container width
+                const scrollTo = direction === 'left' 
+                    ? container.scrollLeft - scrollAmount 
+                    : container.scrollLeft + scrollAmount;
+                container.scrollTo({
+                    left: scrollTo,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
         // Poster data with specific images for each category
           const categoryImages = {
             "Naruto": [  "https://ik.imagekit.io/gbhkmaml0k/All%20anime/naruto.png?updatedAt=1759948312938",
@@ -721,10 +750,11 @@
 
         // Size options with price multipliers
         const sizeOptions = [
-            { name: "mini size", price: 9 },
+           
             { name: "A4", price: 25 },
+             { name: "mini size", price: 9 },
             { name: "12×18", price: 59 },
-            { name: "A4 with Frame", price: 299 }
+            { name: "A4 with Frame", price: 249 }
         ];
 
         // Helper functions for localStorage
@@ -831,22 +861,23 @@
             const { cartCount } = useCart();
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             const categories = [
-                "Naruto",
-                "One Piece",
-                "Attack on Titan",
-                "Demon Slayer",
-                "Jujutsu Kaisen",
-                "Dragon Ball",
-                "Death Note",
-                "Chainsaw Man",
-                "My Hero Academia",
-                "Ben 10",
-                "Sports",
-                "Gamers",
-                "DC",
-                "Marvels",
-                "Mythology",
-                "Quotes"
+              "Naruto",
+            "One Piece",
+            "Attack on Titan",
+            "Demon Slayer",
+            "Jujutsu Kaisen",
+            "Dragon Ball",
+            "Anime Movies",
+            "All Anime",
+            "My Hero Academia",
+            "Blue Lock",
+            "Sports",
+            "Gamers",
+           
+            "DC",
+             "Marvels",
+            "Mythology",
+            "Quotes"
          
               
             ];
@@ -928,9 +959,9 @@ return (
             // Always show A4/12x18/18x24 prices
             return (
                 <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 hover:shadow-lg p-1">
-                    <div className="overflow-hidden h-32">
+                    <div className="overflow-hidden h-48">
                         <img 
-                            src={poster.image} 
+                            src={poster.image}
                             alt={poster.title}
                             className="w-full h-full object-cover poster-image"
                             onClick={() => onSelect(poster)}
@@ -943,7 +974,7 @@ return (
                             <span className="text-blue-600 font-bold text-xs">Mini Size: <del>₹25</del> ₹9</span>
                             <span className="text-blue-600 font-bold text-xs">A4: <del>₹59</del> ₹25</span>
                             <span className="text-blue-600 font-bold text-xs">12x18: <del>₹109</del> ₹59</span>
-                            <span className="text-blue-600 font-bold text-xs">A4 with Frame: <del>₹499</del> ₹299</span>
+                            <span className="text-blue-600 font-bold text-xs">A4 with Frame: <del>₹499</del> ₹249</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <button 
@@ -962,29 +993,29 @@ return (
             const posters = combo.posters.map(id => posterData.find(p => p.id === id));
             
             return (
-                <div className="bg-white rounded-lg shadow-md overflow-hidden border-2 border-yellow-300">
-                    <div className="p-4 bg-yellow-50 border-b border-yellow-200">
-                        <h3 className="font-bold text-lg text-center">Combo of {type} X12 Posters</h3>
-                        <div><h5 className="font-bold text-lg text-center">You Can Customize The 2nd Image</h5></div>
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-yellow-300 mx-auto w-full">
+                    <div className="p-3 bg-yellow-50 border-b border-yellow-200">
+                        <h3 className="font-bold text-lg text-center mb-1">Combo of {type} X12 Posters</h3>
+                        <div><h5 className="font-medium text-base text-center text-gray-700">You Can Customize The 2nd Image</h5></div>
                     </div>
-                    <div className="p-4">
-                        <div className="grid grid-cols-2 gap-2 mb-4">
+                    <div className="p-3">
+                        <div className="grid grid-cols-2 gap-3 mb-4 max-w-xs mx-auto">
                             {posters.map((poster, index) => (
                                 <img 
                                     key={index} 
                                     src={poster.image} 
                                     alt={poster.title}
-                                    className="w-full h-40 object-cover rounded"
+                                    className="w-full h-44 object-cover rounded"
                                 />
                             ))}
                         </div>
-                        <div className="flex justify-between items-center">
-                            <div>
+                        <div className="flex flex-col items-center gap-3">
+                            <div className="text-center">
                                 <span className="text-blue-600 font-bold text-lg">₹{combo.price}</span>
-                          <span className="text-grey-600 font-bold text-xs"> <del>₹649</del></span>
+                                <span className="text-gray-500 font-bold text-xs ml-2"><del>₹649</del></span>
                             </div>
                             <button 
-                                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                                className="bg-blue-600 text-white px-5 py-1.5 rounded-lg hover:bg-blue-700 transition-colors w-full max-w-[160px]"
                                 onClick={() => onSelect(combo, type)}
                             >
                                 Buy Now
@@ -1035,7 +1066,7 @@ return (
 
             return (
                 <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                    <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
                         <div className="p-4 border-b flex justify-between items-center">
                             <h2 className="text-xl font-bold">{isCombo ? `Combo of ${comboType} Posters` : poster.title}</h2>
                             <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -1048,9 +1079,10 @@ return (
                                 <img 
     src={isCombo ? posterData.find(p => p.id === poster.posters[0])?.image : poster.image}
     alt={poster.title}
-    className={`w-full rounded-lg ${zoomed ? 'zoomed' : 'zoomable'}`}
+    className={`w-full max-h-72 max-w-md mx-auto object-contain rounded-lg ${zoomed ? 'zoomed' : 'zoomable'}`}
     onClick={() => setZoomed(!zoomed)}
-/>
+/
+>
                                 {isCombo && (
                                     <div className="grid grid-cols-2 gap-2 mt-2">
                                         {poster.posters.map((id, index) => {
@@ -1144,164 +1176,274 @@ return (
             );
         }
 
-        function Cart() {
-            const { cart, updateCartItem, removeFromCart, clearCart } = useCart();
-            const [cartItems, setCartItems] = useState(cart);
-            
-            useEffect(() => {
-                setCartItems(cart);
-            }, [cart]);
-            
-            // Calculate subtotal, no A4 discount
-            const a4Count = cartItems.filter(item => item.size === 'A4').reduce((sum, item) => sum + item.quantity, 0);
-            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            // Free delivery if 10+ A4 posters OR subtotal >= 249, otherwise ₹50 shipping
-            let shipping = 50;
-            if (a4Count >= 10 || subtotal >= 249) shipping = 0;
-            const total = subtotal + shipping;
-            
-            // Check if order qualifies for free bookmark
-            const hasFreeBookmark = subtotal >= 999;
-            
-            const handleUpdateQuantity = (index, newQuantity) => {
-                if (newQuantity < 1) return;
-                updateCartItem(index, { quantity: newQuantity });
-            };
-            
-            const handleProceedToCheckout = () => {
-                if (cartItems.length > 0) {
-                    window.location.hash = '#checkout';
-                }
-            };
-            
-            return (
-                <div className="max-w-4xl mx-auto p-4">
-                    <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
-                    
-                    {cartItems.length === 0 ? (
-                        <div className="text-center py-12">
-                            <i className="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
-                            <p className="text-gray-600">Your cart is empty</p>
-                            <a href="#home" className="text-blue-600 hover:underline mt-2 inline-block">Continue Shopping</a>
-                        </div>
-                    ) : (
-                        <>
-                            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
-                                <div className="hidden md:grid grid-cols-12 gap-4 p-4 border-b bg-gray-50 font-semibold">
-                                    <div className="col-span-5">Product</div>
-                                    <div className="col-span-2">Price</div>
-                                    <div className="col-span-2">Quantity</div>
-                                    <div className="col-span-2">Total</div>
-                                    <div className="col-span-1">Action</div>
-                                </div>
-                                {cartItems.map((item, index) => (
-                                    <div key={`${item.id}-${index}`} className="p-4 border-b grid grid-cols-6 md:grid-cols-12 gap-4 items-center">
-                                        <div className="col-span-3 md:col-span-5 flex items-center">
-                                            <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded" />
-                                            <div className="ml-3">
-                                                <h3 className="font-semibold text-sm">{item.title}</h3>
-                                                <p className="text-gray-600 text-xs">{item.category}</p>
-                                                <p className="text-gray-600 text-xs">Size: {item.size}</p>
-                                            </div>
-                                        </div>
-                                        <div className="col-span-3 md:col-span-2 text-right md:text-left">
-                                            <span className="md:hidden text-xs text-gray-600 mr-1">Price: </span>
-                                            ₹{item.price}
-                                        </div>
-                                        <div className="col-span-2 md:col-span-2">
-                                            <div className="flex items-center">
-                                                <button 
-                                                    className="bg-gray-200 w-6 h-6 rounded-l"
-                                                    onClick={() => handleUpdateQuantity(index, item.quantity - 1)}
-                                                >
-                                                    -
-                                                </button>
-                                                <span className="border-t border-b w-8 h-6 flex items-center justify-center text-sm">
-                                                    {item.quantity}
-                                                </span>
-                                                <button 
-                                                    className="bg-gray-200 w-6 h-6 rounded-r"
-                                                    onClick={() => handleUpdateQuantity(index, item.quantity + 1)}
-                                                >
-                                                    +
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="col-span-2 md:col-span-2 text-right md:text-left">
-                                            <span className="md:hidden text-xs text-gray-600 mr-1">Total: </span>
-                                            ₹{item.price * item.quantity}
-                                        </div>
-                                        <div className="col-span-2 md:col-span-1 text-right">
-                                            <button 
-                                                className="text-red-500 hover:text-red-700"
-                                                onClick={() => removeFromCart(index)}
-                                            >
-                                                <i className="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            
-                            <div className="flex justify-between mb-4">
-                                <button 
-                                    className="text-blue-600 hover:underline"
-                                    onClick={clearCart}
-                                >
-                                    Clear Cart
-                                </button>
-                                <button 
-                                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
-                                    onClick={handleProceedToCheckout}
-                                >
-                                    Proceed to Checkout
-                                </button>
-                            </div>
-                            
-                            <div className="bg-white rounded-lg shadow-md p-6 max-w-md ml-auto">
-                                <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
-                                <div className="flex justify-between mb-2">
-                                    <span>Subtotal</span>
-                                    <span>₹{subtotal}</span>
-                                </div>
-                                {hasFreeBookmark && (
-                                    <div className="flex justify-between mb-2 text-green-600">
-                                        <span>Free Bookmark</span>
-                                        <span>FREE</span>
-                                    </div>
-                                )}
-                                <div className="flex justify-between mb-2">
-                                    
-                                    <span>Shipping</span>
-                                    <span>
-                                        
-                                        {shipping === 0 ? (
-                                            <>
-                                                <span className="line-through text-gray-400 mr-1">₹50</span>
-                                                <span className="text-green-600 font-semibold">FREE DELIVERY</span>
-                                            </>
-                                        ) : (
-                                            `₹${shipping}`
-                                        )}
-                                    </span>
-                                    
-                                </div>
-                                <div className="border-t pt-2 mt-2 font-semibold text-lg flex justify-between">
-                                    <span>Total</span>
-                                    <span>₹{total}</span>
-                                </div>
-                                {hasFreeBookmark && (
-                                    <p className="text-sm text-green-600 mt-2">🎉 You qualify for a free bookmark!</p>
-                                )}
-                                    <div className="text-xs text-gray-500 mb-2 text-right">
-        Order Above ₹249 for free delivery
-    </div>
-                            </div>
-                        </>
-                    )}
-                </div>
-            );
+function Cart() {
+    const { cart, updateCartItem, removeFromCart, clearCart, addToCart } = useCart();
+    const [cartItems, setCartItems] = useState(cart);
+    const [showOptionalProduct, setShowOptionalProduct] = useState(true);
+    const [couponCode, setCouponCode] = useState('');
+    const [discount, setDiscount] = useState(0);
+    const [couponError, setCouponError] = useState('');
+    
+    useEffect(() => {
+        setCartItems(cart);
+    }, [cart]);
+    
+    // Optional product details
+    const optionalProduct = {
+        id: 'optional-Cellotape',
+        title: 'Double Sided CelloTape',
+        price: 15,
+        image: 'https://ik.imagekit.io/gbhkmaml0k/31XK6GwG-wL._AC_UL320_.jpg?updatedAt=1760514198382', // Replace with your image
+        size: '3 Metre',
+        quantity: 1
+    };
+
+    // Check if optional product is already in cart
+    const hasOptionalProduct = cartItems.some(item => item.id === optionalProduct.id);
+    
+    // Handle coupon code
+    const handleCouponSubmit = (e) => {
+        e.preventDefault();
+        if (couponCode.toUpperCase() === 'YUZI20') {
+            setDiscount(20);
+            setCouponError('Coupon applied successfully!');
+        } else {
+            setDiscount(0);
+            setCouponError('Invalid coupon code');
         }
+    };
+
+    // Calculate subtotal
+    const a4Count = cartItems.filter(item => item.size === 'A4').reduce((sum, item) => sum + item.quantity, 0);
+    const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    let shipping = 50;
+    if (a4Count >= 10 || subtotal >= 249) shipping = 0;
+    const total = subtotal + shipping - discount;
+    
+    // Check if order qualifies for free bookmark
+    const hasFreeBookmark = subtotal >= 999;
+    
+    const handleUpdateQuantity = (index, newQuantity) => {
+        if (newQuantity < 1) return;
+        updateCartItem(index, { quantity: newQuantity });
+    };
+    
+    const handleAddOptionalProduct = () => {
+        addToCart(optionalProduct);
+        setShowOptionalProduct(false);
+    };
+    
+    const handleSkipOptionalProduct = () => {
+        setShowOptionalProduct(false);
+    };
+    
+    const handleProceedToCheckout = () => {
+        if (cartItems.length > 0) {
+            window.location.hash = '#checkout';
+        }
+    };
+    
+    return (
+        <div className="max-w-4xl mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
+            
+            {cartItems.length === 0 ? (
+                <div className="text-center py-12">
+                    <i className="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
+                    <p className="text-gray-600">Your cart is empty</p>
+                    <a href="#home" className="text-blue-600 hover:underline mt-2 inline-block">Continue Shopping</a>
+                </div>
+            ) : (
+                <>
+                    {/* Optional Product Suggestion */}
+                    {showOptionalProduct && !hasOptionalProduct && (
+                        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                            <div className="flex flex-col md:flex-row items-center justify-between">
+                                <div className="flex items-center mb-4 md:mb-0">
+                                    <img 
+                                        src={optionalProduct.image} 
+                                        alt={optionalProduct.title}
+                                        className="w-16 h-16 object-cover rounded mr-4"
+                                    />
+                                    <div>
+                                        <h3 className="font-semibold">{optionalProduct.title}</h3>
+                                        <p className="text-gray-600 text-sm">{optionalProduct.size}</p>
+                                        <p className="text-green-600 font-bold">₹{optionalProduct.price}</p>
+                                    </div>
+                                </div>
+                                <div className="flex space-x-2">
+                                
+                                    <button 
+                                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                                        onClick={handleAddOptionalProduct}
+                                    >
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                        <div className="hidden md:grid grid-cols-12 gap-4 p-4 border-b bg-gray-50 font-semibold">
+                            <div className="col-span-5">Product</div>
+                            <div className="col-span-2">Price</div>
+                            <div className="col-span-2">Quantity</div>
+                            <div className="col-span-2">Total</div>
+                            <div className="col-span-1">Action</div>
+                        </div>
+                        {cartItems.map((item, index) => (
+                            <div key={`${item.id}-${index}`} className="p-4 border-b grid grid-cols-6 md:grid-cols-12 gap-4 items-center">
+                                <div className="col-span-3 md:col-span-5 flex items-center">
+                                    <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded" />
+                                    <div className="ml-3">
+                                        <h3 className="font-semibold text-sm">{item.title}</h3>
+                                        <p className="text-gray-600 text-xs">{item.category}</p>
+                                        <p className="text-gray-600 text-xs">Size: {item.size}</p>
+                                    </div>
+                                </div>
+                                <div className="col-span-3 md:col-span-2 text-right md:text-left">
+                                    <span className="md:hidden text-xs text-gray-600 mr-1">Price: </span>
+                                    ₹{item.price}
+                                </div>
+                                <div className="col-span-2 md:col-span-2">
+                                    <div className="flex items-center">
+                                        <button 
+                                            className="bg-gray-200 w-6 h-6 rounded-l"
+                                            onClick={() => handleUpdateQuantity(index, item.quantity - 1)}
+                                        >
+                                            -
+                                        </button>
+                                        <span className="border-t border-b w-8 h-6 flex items-center justify-center text-sm">
+                                            {item.quantity}
+                                        </span>
+                                        <button 
+                                            className="bg-gray-200 w-6 h-6 rounded-r"
+                                            onClick={() => handleUpdateQuantity(index, item.quantity + 1)}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="col-span-2 md:col-span-2 text-right md:text-left">
+                                    <span className="md:hidden text-xs text-gray-600 mr-1">Total: </span>
+                                    ₹{item.price * item.quantity}
+                                </div>
+                                <div className="col-span-2 md:col-span-1 text-right">
+                                    <button 
+                                        className="text-red-500 hover:text-red-700"
+                                        onClick={() => removeFromCart(index)}
+                                    >
+                                        <i className="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    
+                    <div className="flex justify-between mb-4">
+                        <button 
+                            className="text-blue-600 hover:underline"
+                            onClick={clearCart}
+                        >
+                            Clear Cart
+                        </button>
+                        <button 
+                            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
+                            onClick={handleProceedToCheckout}
+                        >
+                            Proceed to Checkout
+                        </button>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg shadow-md p-6 max-w-md ml-auto">
+                        <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+                        <div className="flex justify-between mb-2">
+                            <span>Subtotal</span>
+                            <span>₹{subtotal}</span>
+                        </div>
+                        {hasFreeBookmark && (
+                            <div className="flex justify-between mb-2 text-green-600">
+                                <span>Free Bookmark</span>
+                                <span>FREE</span>
+                            </div>
+                        )}
+                        <div className="flex justify-between mb-2">
+                            <span>Shipping</span>
+                            <span>
+                                {shipping === 0 ? (
+                                    <>
+                                        <span className="line-through text-gray-400 mr-1">₹50</span>
+                                        <span className="text-green-600 font-semibold">FREE DELIVERY</span>
+                                    </>
+                                ) : (
+                                    `₹${shipping}`
+                                )}
+                            </span>
+                        </div>
+                        
+                        {/* Coupon Code Section */}
+                        <div className="mb-4">
+                            <form onSubmit={handleCouponSubmit} className="flex space-x-2">
+                                <div className="flex-1 relative">
+                                    <input
+                                        type="text"
+                                        value={couponCode}
+                                        onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                                        placeholder="Enter coupon code"
+                                        className="w-full px-3 py-2 border rounded-md text-sm pr-8"
+                                    />
+                                    {couponCode && (
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setCouponCode('');
+                                                setDiscount(0);
+                                                setCouponError('');
+                                            }}
+                                            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                            aria-label="Clear coupon code"
+                                        >
+                                            ✕
+                                        </button>
+                                    )}
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-sm"
+                                >
+                                    Apply
+                                </button>
+                            </form>
+                            {couponError && (
+                                <p className={`text-sm mt-1 ${couponError.includes('success') ? 'text-green-600' : 'text-red-600'}`}>
+                                    {couponError}
+                                </p>
+                            )}
+                        </div>
+                        {discount > 0 && (
+                            <div className="flex justify-between mb-2 text-green-600">
+                                <span>Discount</span>
+                                <span>-₹{discount}</span>
+                            </div>
+                        )}
+                        
+                        <div className="border-t pt-2 mt-2 font-semibold text-lg flex justify-between">
+                            <span>Total</span>
+                            <span>₹{total}</span>
+                        </div>
+                        {hasFreeBookmark && (
+                            <p className="text-sm text-green-600 mt-2">🎉 You qualify for a free bookmark!</p>
+                        )}
+                        <div className="text-xs text-gray-500 mb-2 text-right">
+                            Order Above ₹249 for free delivery
+                        </div>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}
 
         function Checkout() {
             const { cart, clearCart } = useCart();
@@ -1621,11 +1763,31 @@ return (
                         <p className="text-gray-600 mb-6">Thank you for your purchase. Your order has been confirmed.</p>
                         
                         <div className="bg-gray-50 rounded-lg p-4 max-w-md mx-auto mb-6">
-                            <h2 className="font-semibold mb-2">Order Details</h2>
-                            <p>Order ID: <span className="font-mono">{order.id}</span></p>
-                            <p>Order Total: <span className="font-semibold">₹{order.total}</span></p>
-                            <p>Payment Method: <span className="font-semibold">{order.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment'}</span></p>
-                            <p>Date: <span>{new Date(order.date).toLocaleDateString()}</span></p>
+                            <h2 className="font-semibold mb-4">Order Details</h2>
+                            <div className="mb-3">
+                                <p>Order ID: <span className="font-mono">{order.id}</span></p>
+                                <p>Order Total: <span className="font-semibold">₹{order.total}</span></p>
+                                <p>Payment Method: <span className="font-semibold">{order.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment'}</span></p>
+                                <p>Date: <span>{new Date(order.date).toLocaleDateString()}</span></p>
+                            </div>
+
+                            {/* Ordered Items with images */}
+                            <div className="space-y-3">
+                                {order.items.map((it, idx) => (
+                                    <div key={idx} className="flex items-center gap-3 border rounded p-2">
+                                        <img src={it.image || (posterData.find(p=>p.id===it.posterId)?.image)} alt={it.title} className="w-16 h-16 object-cover rounded" />
+                                        <div className="flex-1">
+                                            <div className="font-medium">{it.title}</div>
+                                            <div className="text-xs text-gray-600">Size: {it.size || 'Standard'}</div>
+                                            <div className="text-xs text-gray-600">Qty: {it.quantity}</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="font-semibold">₹{it.price * it.quantity}</div>
+                                            <div className="text-xs text-gray-500">(₹{it.price} ea)</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         
                         <div className="flex justify-center space-x-4">
@@ -1705,9 +1867,31 @@ return (
                         </div>
                     ) : (
                         <div className="space-y-6">
-                            {orders.map(order => (
+                            {orders.slice().reverse().map(order => (
                                 <div key={order.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                    <div className="p-4 border-b flex justify-between items-center flex-wrap">
+                                    {/* Items first (show at top) */}
+                                    <div className="p-4">
+                                        <h4 className="font-medium mb-3">Items</h4>
+                                        <div className="space-y-3">
+                                            {order.items.map((item, index) => (
+                                                <div key={index} className="flex items-center gap-3">
+                                                    <img src={item.image || (posterData.find(p=>p.id===item.posterId)?.image)} alt={item.title} className="w-16 h-16 object-cover rounded" />
+                                                    <div className="flex-1">
+                                                        <div className="font-medium">{item.title}</div>
+                                                        <div className="text-xs text-gray-600">Size: {item.size || 'Standard'}</div>
+                                                        <div className="text-xs text-gray-600">Qty: {item.quantity}</div>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <div className="font-semibold">₹{item.price * item.quantity}</div>
+                                                        <div className="text-xs text-gray-500">(₹{item.price} ea)</div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Summary header (moved after items) */}
+                                    <div className="p-4 border-t border-b flex justify-between items-center flex-wrap">
                                         <div>
                                             <h3 className="font-semibold">Order #{order.id}</h3>
                                             <p className="text-gray-600 text-sm">{new Date(order.date).toLocaleDateString()}</p>
@@ -1723,17 +1907,7 @@ return (
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="p-4">
-                                        <h4 className="font-medium mb-2">Items:</h4>
-                                        <div className="space-y-2">
-                                            {order.items.map((item, index) => (
-                                                <div key={index} className="flex justify-between text-sm">
-                                                    <span>{item.title} x{item.quantity} ({item.size})</span>
-                                                    <span>₹{item.price * item.quantity}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
+
                                     <div className="p-4 bg-gray-50 border-t">
                                         <h4 className="font-medium mb-1">Shipping to:</h4>
                                         <p className="text-sm">{order.customer.name}</p>
@@ -1923,12 +2097,12 @@ function Home() {
             })}
             
             {/* Combos Section */}
-            <section className="py-8 max-w-7xl mx-auto px-4">
+            <section className="py-8 max-w-5xl mx-auto px-4">
                 <h2 className="text-2xl font-bold mb-6 text-center">Special Offers</h2>
                 
-                <div className="mb-8">
-                    <h3 className="text-xl font-semibold mb-4">Combo of 2 Posters</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="mb-8 max-w-md mx-auto">
+                    <h3 className="text-xl font-semibold mb-4 text-center">Combo of 2 Posters</h3>
+                    <div className="grid grid-cols-1 gap-6">
                         {comboData.twoPosters.map(combo => (
                             <ComboCard 
                                 key={combo.id}
@@ -1962,20 +2136,16 @@ function Home() {
                 </div>
                 
                 <div className="p-4">
-                    <div className="mb-4 relative">
-                        <video 
-                            className="w-full rounded-lg shadow-md"
-                            autoPlay
-                            loop
-                            controls
-                            muted
-                            playsInline
-                            preload="metadata"
-                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-                        >
-                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                    <div className="mb-4 responsive-iframe-wrapper rounded-lg overflow-hidden">
+                        {/* Replaced <video> with an <iframe> for embeds; wrapper keeps aspect ratio responsive */}
+                        <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/X4MQP8Stm34?rel=0&modestbranding=1&mute=1"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                     </div>
                     
                     <div className="text-center mb-4">
@@ -2009,28 +2179,24 @@ function Home() {
                     <p className="text-sm text-center text-gray-600">21.0 × 29.7 cm</p>
                 </div>
                 
-                <div className="p-4">
-                    <div className="mb-4">
-                        <video 
-                            className="w-full rounded-lg shadow-md"
-                            autoPlay
-                            loop
-                            controls
-                            muted
-                            playsInline
-                            preload="metadata"
-                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-                        >
-                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                   <div className="p-4">
+                    <div className="mb-4 responsive-iframe-wrapper rounded-lg overflow-hidden">
+                        {/* Replaced <video> with an <iframe> for embeds; wrapper keeps aspect ratio responsive */}
+                        <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/4w2OsQdJxGA?mute=1&rel=0&autoplay=0"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                     </div>
                     
                     <div className="text-center mb-4">
-                        <div className="bg-blue-100 rounded-lg p-3 mb-3">
-                            <i className="fas fa-file-image text-blue-600 text-2xl mb-2"></i>
-                            <p className="font-semibold text-gray-800">Standard Size</p>
-                            <p className="text-sm text-gray-600">Perfect for desks</p>
+                        <div className="bg-blue-100 rounded-lg p-2 mb-2">
+                            <i className="fas fa-file-image text-blue-600 text-xl mb-1"></i>
+                            <p className="font-semibold text-gray-800 text-sm">Standard Size</p>
+                            <p className="text-xs text-gray-600">Perfect for desks</p>
                         </div>
                     </div>
                     
@@ -2041,9 +2207,9 @@ function Home() {
                         </div>
                     </div>
                     
-                    <div className="bg-gray-50 rounded-lg p-3">
-                        <h4 className="font-semibold mb-2 text-sm">Perfect For:</h4>
-                        <ul className="text-xs text-gray-600 space-y-1">
+                    <div className="bg-gray-50 rounded-lg p-2">
+                        <h4 className="font-semibold mb-1 text-xs">Perfect For:</h4>
+                        <ul className="text-xs text-gray-600 space-y-0.5">
                             <li>✓ Study table decoration</li>
                             <li>✓ Office desk</li>
                             <li>✓ Small spaces</li>
@@ -2055,33 +2221,29 @@ function Home() {
 
             {/* 12×18 Size */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-green-400 transition-transform hover:scale-105">
-                <div className="p-4 bg-green-50 border-b border-green-200">
-                    <h3 className="text-xl font-bold text-center text-gray-800">12×18 Size</h3>
-                    <p className="text-sm text-center text-gray-600">30.5 × 45.7 cm</p>
+                <div className="p-2 bg-green-50 border-b border-green-200">
+                    <h3 className="text-lg font-bold text-center text-gray-800">12×18 Size</h3>
+                    <p className="text-xs text-center text-gray-600">30.5 × 45.7 cm</p>
                 </div>
                 
-                <div className="p-4">
-                    <div className="mb-4">
-                        <video 
-                            className="w-full rounded-lg shadow-md"
-                            autoPlay
-                            loop
-                            controls
-                            muted
-                            playsInline
-                            preload="metadata"
-                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-                        >
-                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                   <div className="p-4">
+                    <div className="mb-4 responsive-iframe-wrapper rounded-lg overflow-hidden">
+                        {/* Replaced <video> with an <iframe> for embeds; wrapper keeps aspect ratio responsive */}
+                        <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/Kzbn8c_f5fU?mute=1&rel=0&autoplay=0"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                     </div>
                     
                     <div className="text-center mb-4">
-                        <div className="bg-green-100 rounded-lg p-3 mb-3">
-                            <i className="fas fa-expand text-green-600 text-2xl mb-2"></i>
-                            <p className="font-semibold text-gray-800">Medium Size</p>
-                            <p className="text-sm text-gray-600">Ideal for walls</p>
+                        <div className="bg-green-100 rounded-lg p-2 mb-2">
+                            <i className="fas fa-expand text-green-600 text-xl mb-1"></i>
+                            <p className="font-semibold text-gray-800 text-sm">Medium Size</p>
+                            <p className="text-xs text-gray-600">Ideal for walls</p>
                         </div>
                     </div>
                     
@@ -2106,39 +2268,35 @@ function Home() {
 
             {/* A4 with Frame */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-yellow-400 transition-transform hover:scale-105">
-                <div className="p-4 bg-yellow-50 border-b border-yellow-200">
-                    <h3 className="text-xl font-bold text-center text-gray-800">A4 with Frame</h3>
-                    <p className="text-sm text-center text-gray-600">Ready to hang</p>
+                <div className="p-2 bg-yellow-50 border-b border-yellow-200">
+                    <h3 className="text-lg font-bold text-center text-gray-800">A4 with Frame</h3>
+                    <p className="text-xs text-center text-gray-600">Ready to hang</p>
                 </div>
                 
-                <div className="p-4">
-                    <div className="mb-4">
-                        <video 
-                            className="w-full rounded-lg shadow-md"
-                            autoPlay
-                            loop
-                            controls
-                            muted
-                            playsInline
-                            preload="metadata"
-                            poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-                        >
-                            <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                    <div className="p-4">
+                    <div className="mb-4 responsive-iframe-wrapper rounded-lg overflow-hidden">
+                        {/* Replaced <video> with an <iframe> for embeds; wrapper keeps aspect ratio responsive */}
+                        <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/Kzbn8c_f5fU?mute=1&rel=0&autoplay=0"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                     </div>
                     
                     <div className="text-center mb-4">
-                        <div className="bg-yellow-100 rounded-lg p-3 mb-3">
-                            <i className="fas fa-border-all text-yellow-600 text-2xl mb-2"></i>
-                            <p className="font-semibold text-gray-800">Framed Display</p>
-                            <p className="text-sm text-gray-600">Premium look</p>
+                        <div className="bg-yellow-100 rounded-lg p-2 mb-2">
+                            <i className="fas fa-border-all text-yellow-600 text-xl mb-1"></i>
+                            <p className="font-semibold text-gray-800 text-sm">Framed Display</p>
+                            <p className="text-xs text-gray-600">Premium look</p>
                         </div>
                     </div>
                     
                     <div className="flex justify-center items-center mb-4">
                         <div>
-                            <span className="text-yellow-600 font-bold text-xl">₹299</span>
+                            <span className="text-yellow-600 font-bold text-xl">₹249</span>
                             <span className="text-gray-500 line-through text-sm ml-2">₹499</span>
                         </div>
                     </div>
@@ -2158,36 +2316,46 @@ function Home() {
     </div>
 </section>
 
-
-                        {/* Customer Reviews Section */}
+{/* Customer Reviews Section */}
 <section className="py-12 bg-gradient-to-r from-indigo-50 to-purple-50">
     <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-4">What Our Customers Say</h2>
         <p className="text-gray-600 text-center mb-8">Real reviews from real customers</p>
         
         <div className="relative">
-            {/* Reviews Slider Container */}
-            <div className="flex overflow-x-auto gap-6 pb-8 custom-scrollbar" 
-                 style={{WebkitOverflowScrolling: 'touch'}}>
-                {/* Review 1 */}
-                <div className="flex-shrink-0 w-80">
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
-                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
-                            <video 
-    className="absolute inset-0 w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-    controls
-    preload="metadata"
-    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
+            {/* Left Arrow Button */}
+            <button 
+                onClick={() => scrollContainer('reviews-container', 'left')}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg border border-gray-200"
+                style={{left: '-12px'}}
+            >
+                <i className="fas fa-chevron-left"></i>
+            </button>
 
->
-    <source src="https://ik.imagekit.io/gbhkmaml0k/Video-898.mp4?updatedAt=1760457454549"
- type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
+            {/* Right Arrow Button */}
+            <button 
+                onClick={() => scrollContainer('reviews-container', 'right')}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg border border-gray-200"
+                style={{right: '-12px'}}
+            >
+                <i className="fas fa-chevron-right"></i>
+            </button>
+
+            {/* Reviews Slider Container */}
+            <div id="reviews-container" className="flex overflow-x-auto gap-4 pb-8 custom-scrollbar" 
+                style={{WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth'}}>
+                {/* Review 1 */}
+                <div className="flex-shrink-0 w-48">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                        <div className="relative" style={{paddingBottom: '140%'}}> {/* reduced aspect ratio */}
+                          <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/X9rgppF5G-Q?autoplay=1&mute=1&loop=1&playlist=X9rgppF5G-Q"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                         </div>
                         <div className="p-4">
                             <div className="flex items-center mb-2">
@@ -2207,24 +2375,17 @@ function Home() {
                 </div>
 
                 {/* Review 2 */}
-                <div className="flex-shrink-0 w-80">
+                <div className="flex-shrink-0 w-48">
                     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
-                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
-                             <video 
-    className="absolute inset-0 w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-    controls
-    preload="metadata"
-    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-
->
-    <source src="https://ik.imagekit.io/gbhkmaml0k/Video-482.mp4?updatedAt=1760460199517"
- type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
+                        <div className="relative" style={{paddingBottom: '140%'}}> {/* reduced aspect ratio */}
+                           <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/MAfQGRbIgIM?autoplay=1&mute=1&loop=1&playlist=MAfQGRbIgIM"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                         </div>
                         <div className="p-4">
                             <div className="flex items-center mb-2">
@@ -2244,24 +2405,17 @@ function Home() {
                 </div>
 
                 {/* Review 3 */}
-                <div className="flex-shrink-0 w-80">
+                <div className="flex-shrink-0 w-48">
                     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
-                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
-                             <video 
-    className="absolute inset-0 w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-    controls
-    preload="metadata"
-    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-
->
-    <source src="https://ik.imagekit.io/gbhkmaml0k/Video-98.mp4?updatedAt=1760461178927"
- type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
+                        <div className="relative" style={{paddingBottom: '140%'}}> {/* reduced aspect ratio */}
+                              <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.yo&loop=1&playlist=X9rgppF5G-Q"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                         </div>
                         <div className="p-4">
                             <div className="flex items-center mb-2">
@@ -2281,24 +2435,17 @@ function Home() {
                 </div>
 
                 {/* Review 4 */}
-                <div className="flex-shrink-0 w-80">
+                <div className="flex-shrink-0 w-48">
                     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
-                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
-                             <video 
-    className="absolute inset-0 w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-    controls
-    preload="metadata"
-    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-
->
-    <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
- type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
+                        <div className="relative" style={{paddingBottom: '140%'}}> {/* reduced aspect ratio */}
+                             <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.youtu1&playlist=X9rgppF5G-Q"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                         </div>
                         <div className="p-4">
                             <div className="flex items-center mb-2">
@@ -2318,24 +2465,17 @@ function Home() {
                 </div>
 
                 {/* Review 5 */}
-                <div className="flex-shrink-0 w-80">
+                <div className="flex-shrink-0 w-48">
                     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
-                        <div className="relative" style={{paddingBottom: '160%'}}> {/* 9:16 aspect ratio */}
-                          <video 
-    className="absolute inset-0 w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-    controls
-    preload="metadata"
-    poster="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
-
->
-    <source src="https://ik.imagekit.io/gbhkmaml0k/WhatsApp%20Video%202025-10-11%20at%2014.22.56.mp4?updatedAt=1760172863917"
- type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
+                        <div className="relative" style={{paddingBottom: '140%'}}> {/* reduced aspect ratio */}
+                           <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src="https://www.yourgppF5G-Q"
+                            title="Mini Poster Demo"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
                         </div>
                         <div className="p-4">
                             <div className="flex items-center mb-2">
@@ -2367,6 +2507,337 @@ function Home() {
             </div>
         </div>
 
+        {/* Photo Reviews Section */}
+        <div className="mt-12">
+            <h3 className="text-xl font-bold text-center mb-6">Photo Reviews</h3>
+            <div className="relative">
+                {/* Left Arrow Button */}
+                <button 
+                    onClick={() => scrollContainer('photo-reviews-container', 'left')}
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg border border-gray-200"
+                    style={{left: '-12px'}}
+                >
+                    <i className="fas fa-chevron-left"></i>
+                </button>
+
+                {/* Right Arrow Button */}
+                <button 
+                    onClick={() => scrollContainer('photo-reviews-container', 'right')}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg border border-gray-200"
+                    style={{right: '-12px'}}
+                >
+                    <i className="fas fa-chevron-right"></i>
+                </button>
+
+                <div id="photo-reviews-container" className="flex overflow-x-auto gap-4 pb-8 custom-scrollbar" 
+                    style={{WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth'}}>
+                    {/* Photo Review 1 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/Screenshot%202025-11-02%20at%201.14.53%E2%80%AFPM.png?updatedAt=1762069753808" 
+                                    alt="Customer Review 1"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">5.0</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"The printing quality is amazing! Loved the colors."</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Vikram Singh</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Photo Review 2 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/Screenshot%202025-11-02%20at%201.17.15%E2%80%AFPM.png?updatedAt=1762069751262" 
+                                    alt="Customer Review 2"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">5.0</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Perfect size for my room decor. Very satisfied!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Anjali Khanna</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Photo Review 3 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApprty%20Image%202025-11-05%20at%2020.34.39.jpeg?updatedAt=1762355776647" 
+                                    alt="Customer Review 3"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">5.0</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Amazing quality and quick delivery. Great service!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Ravi Kumar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Photo Review 4 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApp%20Image%202025yy-11-05%20at%2020.34.38.jpeg?updatedAt=1762355775993" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+                     {/* Photo Review 5 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApp%20Image%202025-tytryrt11-05%20at%2020.34.40.jpeg?updatedAt=1762355770162" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     {/* Photo Review 6 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApp%20Image%202tytyrty025-11-05%20at%2020.34.39.jpeg?updatedAt=1762355769844" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+ {/* Photo Review 7 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApp%20Imagerytry%202025-11-05%20at%2020.34.45.jpeg?updatedAt=1762355769857" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+ {/* Photo Review 8 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApp%20Itrytrmage%202025-11-05%20at%2020.34.46.jpeg?updatedAt=1762355769606" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+ {/* Photo Review 9 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatrtytrysApp%20Image%202025-11-05%20at%2020.34.41.jpeg?updatedAt=1762355769752" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+ {/* Photo Review 10 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/rt.jpeg?updatedAt=1762355769375" 
+                                    alt="Customer Review 4"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">4.5</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Beautiful frame and excellent packaging!"</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Neha Sharma</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* Photo Review 11 */}
+                    <div className="flex-shrink-0 w-56">
+                        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-purple-200">
+                            <div className="relative" style={{paddingBottom: '100%'}}>
+                                <img 
+                                    src="https://ik.imagekit.io/gbhkmaml0k/customer%20review/WhatsApp%20Image%202025-11-05%20at%2020.34.38.jpeg?updatedAt=1762355775930" 
+                                    alt="Customer Review 5"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-3">
+                                <div className="flex items-center mb-2">
+                                    <div className="flex text-yellow-400">
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                        <i className="fas fa-star"></i>
+                                    </div>
+                                    <span className="ml-2 text-xs font-semibold">5.0</span>
+                                </div>
+                                <p className="text-xs text-gray-600">"Exactly what I wanted! Will order again soon."</p>
+                                <p className="text-[11px] text-gray-500 mt-2">- Arjun Reddy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Photo Reviews Scrollbar Indicator */}
+                <div className="mt-4 px-4">
+                    <div className="bg-gray-200 rounded-full h-2 w-full">
+                        <div className="bg-purple-600 rounded-full h-2 w-1/5" id="photo-scrollbar-progress"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-gray-500 mt-2">
+                        <span>Swipe to see more photo reviews</span>
+                        <span id="photo-scroll-position">1/5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {/* Stats Section */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
@@ -2392,30 +2863,103 @@ function Home() {
     <script dangerouslySetInnerHTML={{
         __html: `
             document.addEventListener('DOMContentLoaded', function() {
-                const container = document.querySelector('.flex.overflow-x-auto');
-                const progress = document.getElementById('scrollbar-progress');
-                const position = document.getElementById('scroll-position');
-                
-                if (container && progress && position) {
-                    container.addEventListener('scroll', function() {
+                // Function to setup review container scrolling
+                const setupReviewContainer = (containerId, progressId, positionId) => {
+                    const container = document.getElementById(containerId);
+                    const progress = document.getElementById(progressId);
+                    const position = document.getElementById(positionId);
+
+                    if (!container || !progress || !position) return;
+
+                    const getGap = (el) => {
+                        try {
+                            const g = getComputedStyle(el).gap || getComputedStyle(el).columnGap || '24px';
+                            return parseInt(g, 10) || 24;
+                        } catch (e) { return 24; }
+                    };
+
+                    const updateProgress = () => {
                         const scrollWidth = container.scrollWidth - container.clientWidth;
                         const scrollLeft = container.scrollLeft;
-                        const progressPercentage = (scrollLeft / scrollWidth) * 100;
-                        
-                        // Update progress bar
+                        const progressPercentage = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
                         progress.style.width = Math.min(100, Math.max(0, progressPercentage)) + '%';
-                        
-                        // Update position indicator (1/5, 2/5, etc.)
-                        const itemWidth = container.querySelector('.flex-shrink-0').offsetWidth + 24; // width + gap
-                        const currentPosition = Math.round(scrollLeft / itemWidth) + 1;
-                        const totalItems = container.children.length;
-                        position.textContent = currentPosition + '/' + totalItems;
-                    });
-                }
+
+                        const first = container.querySelector('.flex-shrink-0');
+                        const gap = getGap(container);
+                        const itemWidth = first ? (first.offsetWidth + gap) : container.clientWidth;
+                        const currentPosition = itemWidth ? Math.round(scrollLeft / itemWidth) + 1 : 1;
+                        const totalItems = container.children.length || 1;
+                        position.textContent = Math.min(totalItems, Math.max(1, currentPosition)) + '/' + totalItems;
+                    };
+
+                    // Initial update
+                    updateProgress();
+
+                    container.addEventListener('scroll', updateProgress, { passive: true });
+
+                    // Add drag-to-scroll (mouse + touch)
+                    let isDown = false;
+                    let startX = 0;
+                    let scrollStart = 0;
+
+                    return { container, isDown, startX, scrollStart, updateProgress };
+                };
+
+                // Setup video reviews container
+                const videoReviews = setupReviewContainer(
+                    'reviews-container',
+                    'scrollbar-progress',
+                    'scroll-position'
+                );
+
+                // Setup photo reviews container
+                const photoReviews = setupReviewContainer(
+                    'photo-reviews-container',
+                    'photo-scrollbar-progress',
+                    'photo-scroll-position'
+                );
+
+                // Common event handlers for both containers
+                [videoReviews, photoReviews].forEach(reviews => {
+                    if (!reviews || !reviews.container) return;
+
+                    const pointerDown = (e) => {
+                        reviews.isDown = true;
+                        reviews.startX = (e.touches && e.touches[0] ? e.touches[0].pageX : e.pageX) || 0;
+                        reviews.scrollStart = reviews.container.scrollLeft;
+                        reviews.container.classList.add('dragging');
+                    };
+
+                    const pointerMove = (e) => {
+                        if (!reviews.isDown) return;
+                        const x = (e.touches && e.touches[0] ? e.touches[0].pageX : e.pageX) || 0;
+                        const walk = reviews.startX - x;
+                        reviews.container.scrollLeft = reviews.scrollStart + walk;
+                    };
+
+                    const pointerUp = () => {
+                        reviews.isDown = false;
+                        reviews.container.classList.remove('dragging');
+                    };
+
+                    // Mouse events
+                    reviews.container.addEventListener('mousedown', pointerDown);
+                    reviews.container.addEventListener('mousemove', pointerMove);
+                    reviews.container.addEventListener('mouseleave', pointerUp);
+                    reviews.container.addEventListener('mouseup', pointerUp);
+
+                    // Touch events
+                    reviews.container.addEventListener('touchstart', pointerDown, { passive: true });
+                    reviews.container.addEventListener('touchmove', pointerMove, { passive: false });
+                    reviews.container.addEventListener('touchend', pointerUp);
+                });
             });
         `
     }} />
 </section>
+
+
+
 
 
 <style>{`
@@ -2440,6 +2984,29 @@ function Home() {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+}
+
+.custom-scrollbar.dragging, #reviews-container.dragging {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* Responsive iframe wrapper: default 16:9 aspect ratio, fills container */
+.responsive-iframe-wrapper {
+    position: relative;
+    width: 100%;
+}
+.responsive-iframe-wrapper::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 */
+}
+.responsive-iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 `}
 
@@ -2570,6 +3137,53 @@ Our core belief is simple: Great art is for everyone. We are dedicated to suppor
                 </CartProvider>
             );
         }
+
+        // Intercept category anchor clicks and perform a precise scroll with offset
+        // so the category title is visible above sticky headers. Also add a brief
+        // highlight to the target section so it's obvious which section opened.
+        document.addEventListener('click', function(e) {
+            try {
+                const a = e.target.closest && e.target.closest('a[href^="#category-"]');
+                if (!a) return;
+                e.preventDefault();
+
+                const href = a.getAttribute('href') || '';
+                const targetId = href.startsWith('#') ? href.slice(1) : href;
+                const el = document.getElementById(targetId);
+
+                const HEADER_OFFSET = 100; // pixels to leave above the section (adjustable)
+
+                const scrollToElement = (node) => {
+                    const rect = node.getBoundingClientRect();
+                    const top = rect.top + window.pageYOffset - HEADER_OFFSET;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    // update hash without immediate jump
+                    history.replaceState(null, '', '#' + node.id);
+                    // flash highlight
+                    const prevOutline = node.style.boxShadow;
+                    node.style.boxShadow = '0 0 0 6px rgba(79,70,229,0.12)';
+                    setTimeout(() => { node.style.boxShadow = prevOutline || ''; }, 900);
+                };
+
+                if (el) {
+                    scrollToElement(el);
+                    return;
+                }
+
+                // Fallback: try to match normalized category ids defensively
+                const normalized = targetId.replace(/^category-/, '').toLowerCase();
+                const candidates = document.querySelectorAll('[id^="category-"]');
+                for (const node of candidates) {
+                    const name = node.id.replace(/^category-/, '').toLowerCase();
+                    if (name === normalized) {
+                        scrollToElement(node);
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.error('Error handling category link click', err);
+            }
+        });
 
         ReactDOM.render(<App />, document.getElementById('root'));
     </script>
